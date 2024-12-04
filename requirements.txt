@@ -1,0 +1,8 @@
+torch==2.0.0+cu118
+data==0.4
+torchvision==0.15.1+cu118
+json5==0.9.14
+einops==0.7.0
+numpy==1.23.5
+matplotlib==3.7.2
+tqdm==4.66.1
