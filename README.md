@@ -16,7 +16,7 @@ Note: please put the datasets in the data folder
 
 # Run
 ## a、embedding
-**Extracting the image features of the dataset in loadimage.py and saving the results as database_images.pkl and test_images.pkl files under the path "FHN\demo\chestX-ray".**
+Extracting the image features of the dataset in loadimage.py and saving the results as database_images.pkl and test_images.pkl files under the path "FHN\demo\chestX-ray".
 
 ## b、run
 ```
