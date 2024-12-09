@@ -36,4 +36,6 @@ python demo.py
 
 [[2] W. Ding, T. Zhou, J. Huang, S. Jiang, T. Hou, and C.-T. Lin, “FMDNN: A fuzzy-guided multi-granular deep neural network for histopathological image classification,” IEEE Trans. Fuzzy Syst., val. 32, no. 8, pp. 4709-4723, Aug. 2024.](https://ieeexplore.ieee.org/abstract/document/10552048)
 
-[[3] W. Ding, T. Hou, J. Huang, H. Ju, and S. Jiang, “Dynamic Evidence Fusion Neural Networks with Uncertainty Theory and Its Application in Brain Network Analysis,” Inf. Sci., val. 691, pp. 121622, Feb. 2025.](https://www.sciencedirect.com/science/article/pii/S0020025524015366)
+[[3] W. Ding, T. Hou, J. Huang, H. Ju, and S. Jiang, “Dynamic evidence fusion neural networks with uncertainty theory and its application in brain network analysis,” Inf. Sci., val. 691, pp. 121622, Feb. 2025.](https://www.sciencedirect.com/science/article/pii/S0020025524015366)
+
+[[4] A. Li, Z. Deng, W. Zhang, Z. Xiao, K. S. Choi, Y. Liu, and S. Wang, “Multiview transfer representation learning with TSK fuzzy system for EEG epilepsy detection,” IEEE Trans. Fuzzy Syst., val. 32, no. 1, pp. 38-52, Jan. 2024.](https://ieeexplore.ieee.org/abstract/document/10159484)
