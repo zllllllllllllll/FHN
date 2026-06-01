@@ -200,14 +200,14 @@ def calc_loss(V, U, S, code_length, select_index, gamma, labels, is_single=1):
     return loss
 
 
-def encode(model, data_loader, num_data, bit, fea, kkk):
+def encode(model, data_loader, num_data, bit, fea):
     B = np.zeros([num_data, bit], dtype=np.float64)
     for iter, data in enumerate(data_loader, 0):
         _, _, data_ind = data
         data_input = fea[data_ind.cpu().numpy(), :]  # [b, n_features=6912, n_clusters]
         data_input = torch.from_numpy(data_input)
         data_input = Variable(data_input.cuda())
-        output, output_cls = model(data_input, kkk)
+        output, output_cls = model(data_input)
         B[data_ind.numpy(), :] = torch.sign(output.cpu().data).numpy()
     return B
 
@@ -222,7 +222,6 @@ def adjusting_learning_rate(optimizer, iter):
 
 
 def adsh_algo(code_length):
-    kkk = 0
     os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpu
     # torch.manual_seed(5000)
     torch.manual_seed(5000)
@@ -335,13 +334,12 @@ def adsh_algo(code_length):
         for epoch in range(epochs):
             for iteration, (train_input, train_label, batch_ind) in enumerate(trainloader):
                 print('image_databaser', image_databaser[batch_ind.cpu().numpy(), :])
-                kkk = 1
                 batch_size_ = train_label.size(0)
                 u_ind = np.linspace(iteration * batch_size, np.min((num_samples, (iteration+1)*batch_size)) - 1, batch_size_, dtype=int)
                 fuzzy_input = result_database[batch_ind.cpu().numpy(), :]
                 fuzzy_input = torch.from_numpy(fuzzy_input)
                 fuzzy_input = Variable(fuzzy_input.cuda())
-                output, output_cls = model(fuzzy_input, kkk)
+                output, output_cls = model(fuzzy_input)
                 S = Sim.index_select(0, torch.from_numpy(u_ind))
                 U[u_ind, :] = output.cpu().data.numpy()
                 model.zero_grad()
@@ -390,7 +388,7 @@ def adsh_algo(code_length):
             torch.save(model.state_dict(), os.path.join('./', 'demo/model_ISIC2018(5).pt'))
 
             testloader = DataLoader(dset_test, batch_size=32, shuffle=False, num_workers=0)
-            qB = encode(model, testloader, num_test, code_length, result_test, kkk)
+            qB = encode(model, testloader, num_test, code_length, result_test)
             rB = V
             map = calc_hr.calc_map(qB, rB, test_labels.numpy(), database_labels.numpy())
             np.save(os.path.join('./', 'demo/test_binary_ISIC2018(5).npy'), qB)
